@@ -1,4 +1,4 @@
-# swift-axis-primitives
+# swift-axis
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -11,7 +11,7 @@ Dimension-checked coordinate-axis selection for Swift — `Axis<N>` identifies o
 `Axis<N>` names a basis vector direction in an `N`-dimensional coordinate system. The `let N: Int` value-generic parameter lives in the type, so `Axis<2>` and `Axis<3>` are distinct types: a 2D axis cannot be passed where a 3D axis is expected, and the mismatch is a compile error rather than a runtime bug.
 
 ```swift
-import Axis_Primitives
+import Axis
 
 // Per-arity accessors give the basis directions by name.
 let x: Axis<3> = .primary      // index 0 (X)
@@ -39,7 +39,7 @@ let valid = try Axis<3>(2)                              // ok
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-axis-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-axis.git", branch: "main")
 ]
 ```
 
@@ -47,7 +47,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Axis Primitives", package: "swift-axis-primitives"),
+        .product(name: "Axis", package: "swift-axis"),
     ]
 )
 ```
@@ -63,14 +63,14 @@ The root `Axis Primitive` target is zero-dependency; each protocol conformance l
 | Product | Depends on | When to import |
 |---------|-----------|----------------|
 | `Axis Primitive` | — | The `Axis<N>` value type, `Axis.Error`, per-arity accessors (`.primary` / `.secondary` / `.tertiary` / `.quaternary`, 2D `.perpendicular`), and conditional `Codable`. |
-| `Axis Equation Primitives` | `swift-equation-primitives` | `Equation.Protocol` conformance (institute `Equatable` twin). |
-| `Axis Hash Primitives` | `swift-hash-primitives` | `Hash.Protocol` conformance (institute `Hashable` twin). |
-| `Axis Comparison Primitives` | `swift-comparison-primitives` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
-| `Axis Enumerable Primitives` | `swift-finite-primitives`, `swift-ordinal-primitives` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases`. |
-| `Axis Primitives` | all of the above | Umbrella re-exporting every sub-target. |
-| `Axis Primitives Test Support` | `Axis Primitives` | Test-only spine re-exporting upstream Test Support for literal comparisons. |
+| `Axis Equation` | `swift-equation` | `Equation.Protocol` conformance (institute `Equatable` twin). |
+| `Axis Hash` | `swift-hash` | `Hash.Protocol` conformance (institute `Hashable` twin). |
+| `Axis Comparison` | `swift-comparison` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
+| `Axis Enumerable` | `swift-finite`, `swift-ordinal` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases`. |
+| `Axis` | all of the above | Umbrella re-exporting every sub-target. |
+| `Axis Test Support` | `Axis` | Test-only spine re-exporting upstream Test Support for literal comparisons. |
 
-The `Direction` sign factor lives in `swift-direction-primitives`; the composite `Facet<N> = Axis<N> × Direction` lives in `swift-facet-primitives`.
+The `Direction` sign factor lives in `swift-direction`; the composite `Facet<N> = Axis<N> × Direction` lives in `swift-facet`.
 
 Foundation-free.
 

@@ -1,4 +1,4 @@
 public import Axis_Primitive
-public import Equation_Primitives
+public import Equation
 
 extension Axis: Equation.`Protocol` {}
