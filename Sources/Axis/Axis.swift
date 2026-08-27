@@ -19,7 +19,7 @@ extension Axis {
     public typealias Error = __AxisError
 }
 
-extension Axis {
+extension Axis: Equatable, Hashable, Comparable {
 
     @inlinable
     public static func == (lhs: Axis, rhs: Axis) -> Bool {
