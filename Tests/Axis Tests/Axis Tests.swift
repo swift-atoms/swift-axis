@@ -1,4 +1,4 @@
-import Axis_Primitives
+import Axis
 import Testing
 
 @Suite

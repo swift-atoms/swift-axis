@@ -1,6 +1,6 @@
-import Axis_Primitive
-import Finite_Primitives
-import Ordinal_Primitives
+import Axis
+import Finite
+import Ordinal
 
 extension Axis: Finite.Enumerable {
 

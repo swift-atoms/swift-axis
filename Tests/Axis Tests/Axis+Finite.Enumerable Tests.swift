@@ -1,5 +1,5 @@
-import Axis_Primitives
-import Axis_Primitives_Test_Support
+import Axis
+import Axis_Test_Support
 import Testing
 
 @Suite

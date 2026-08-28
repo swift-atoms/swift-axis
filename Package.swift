@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-axis-primitives",
+    name: "swift-axis",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,125 +13,109 @@ let package = Package(
     products: [
 
         .library(
-            name: "Axis Primitive",
-            targets: ["Axis Primitive"]
+            name: "Axis Equation",
+            targets: ["Axis Equation"]
+        ),
+        .library(
+            name: "Axis Hash",
+            targets: ["Axis Hash"]
+        ),
+        .library(
+            name: "Axis Comparison",
+            targets: ["Axis Comparison"]
+        ),
+        .library(
+            name: "Axis Enumerable",
+            targets: ["Axis Enumerable"]
         ),
 
         .library(
-            name: "Axis Equation Primitives",
-            targets: ["Axis Equation Primitives"]
-        ),
-        .library(
-            name: "Axis Hash Primitives",
-            targets: ["Axis Hash Primitives"]
-        ),
-        .library(
-            name: "Axis Comparison Primitives",
-            targets: ["Axis Comparison Primitives"]
-        ),
-        .library(
-            name: "Axis Enumerable Primitives",
-            targets: ["Axis Enumerable Primitives"]
+            name: "Axis",
+            targets: ["Axis"]
         ),
 
         .library(
-            name: "Axis Primitives",
-            targets: ["Axis Primitives"]
-        ),
-
-        .library(
-            name: "Axis Primitives Test Support",
-            targets: ["Axis Primitives Test Support"]
+            name: "Axis Test Support",
+            targets: ["Axis Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-equation-primitives.git",
+            url: "https://github.com/swift-atoms/swift-equation.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-hash-primitives.git",
+            url: "https://github.com/swift-atoms/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-comparison-primitives.git",
+            url: "https://github.com/swift-atoms/swift-comparison.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-finite-primitives.git",
+            url: "https://github.com/swift-atoms/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-ordinal-primitives.git",
+            url: "https://github.com/swift-atoms/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Axis Primitive",
+            name: "Axis",
             dependencies: []
         ),
 
         .target(
-            name: "Axis Equation Primitives",
+            name: "Axis Equation",
             dependencies: [
-                "Axis Primitive",
-                .product(name: "Equation Primitives", package: "swift-equation-primitives"),
+                .target(name: "Axis"),
+                .product(name: "Equation", package: "swift-equation"),
             ]
         ),
         .target(
-            name: "Axis Hash Primitives",
+            name: "Axis Hash",
             dependencies: [
-                "Axis Primitive",
-                .product(name: "Hash Primitives", package: "swift-hash-primitives"),
+                .target(name: "Axis"),
+                .product(name: "Hash", package: "swift-hash"),
             ]
         ),
         .target(
-            name: "Axis Comparison Primitives",
+            name: "Axis Comparison",
             dependencies: [
-                "Axis Primitive",
-                .product(name: "Comparison Primitives", package: "swift-comparison-primitives"),
-            ]
-        ),
-
-        .target(
-            name: "Axis Enumerable Primitives",
-            dependencies: [
-                "Axis Primitive",
-                .product(name: "Finite Primitives", package: "swift-finite-primitives"),
-                .product(name: "Ordinal Primitives", package: "swift-ordinal-primitives"),
+                .target(name: "Axis"),
+                .product(name: "Comparison", package: "swift-comparison"),
             ]
         ),
 
         .target(
-            name: "Axis Primitives",
+            name: "Axis Enumerable",
             dependencies: [
-                "Axis Primitive",
-                "Axis Equation Primitives",
-                "Axis Hash Primitives",
-                "Axis Comparison Primitives",
-                "Axis Enumerable Primitives",
+                .target(name: "Axis"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
 
         .target(
-            name: "Axis Primitives Test Support",
+            name: "Axis Test Support",
             dependencies: [
-                "Axis Primitives",
+                .target(name: "Axis"),
                 .product(
-                    name: "Ordinal Primitives Test Support",
-                    package: "swift-ordinal-primitives"
+                    name: "Ordinal Test Support",
+                    package: "swift-ordinal"
                 ),
             ],
             path: "Tests/Support"
         ),
 
         .testTarget(
-            name: "Axis Primitives Tests",
+            name: "Axis Tests",
             dependencies: [
-                "Axis Primitives",
-                "Axis Primitives Test Support",
+                .target(name: "Axis"),
+                .target(name: "Axis Test Support"),
             ]
         ),
     ],
