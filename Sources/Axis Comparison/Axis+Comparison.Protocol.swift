@@ -1,4 +1,4 @@
-public import Axis_Primitive
+public import Axis
 public import Comparison
 
 extension Axis: Comparison.`Protocol` {}

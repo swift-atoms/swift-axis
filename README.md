@@ -39,7 +39,7 @@ let valid = try Axis<3>(2)                              // ok
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-molecules/swift-axis.git", branch: "main")
+    .package(url: "https://github.com/swift-atoms/swift-axis.git", branch: "main")
 ]
 ```
 
@@ -63,12 +63,12 @@ The root `Axis Primitive` target is zero-dependency; each protocol conformance l
 | Product | Depends on | When to import |
 |---------|-----------|----------------|
 | `Axis Primitive` | — | The `Axis<N>` value type, `Axis.Error`, per-arity accessors (`.primary` / `.secondary` / `.tertiary` / `.quaternary`, 2D `.perpendicular`), and conditional `Codable`. |
-| `Axis Equation` | `swift-equation` | `Equation.Protocol` conformance (institute `Equatable` twin). |
-| `Axis Hash` | `swift-hash` | `Hash.Protocol` conformance (institute `Hashable` twin). |
-| `Axis Comparison` | `swift-comparison` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
-| `Axis Enumerable` | `swift-finite`, `swift-ordinal` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases`. |
-| `Axis` | all of the above | Umbrella re-exporting every sub-target. |
-| `Axis Test Support` | `Axis` | Test-only spine re-exporting upstream Test Support for literal comparisons. |
+| `Axis Equation Primitives` | `swift-equation` | `Equation.Protocol` conformance (institute `Equatable` twin). |
+| `Axis Hash Primitives` | `swift-hash` | `Hash.Protocol` conformance (institute `Hashable` twin). |
+| `Axis Comparison Primitives` | `swift-comparison` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
+| `Axis Enumerable Primitives` | `swift-finite`, `swift-ordinal` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases`. |
+| `Axis Primitives` | all of the above | Umbrella re-exporting every sub-target. |
+| `Axis Test Support` | `Axis Primitives` | Test-only spine re-exporting upstream Test Support for literal comparisons. |
 
 The `Direction` sign factor lives in `swift-direction`; the composite `Facet<N> = Axis<N> × Direction` lives in `swift-facet`.
 

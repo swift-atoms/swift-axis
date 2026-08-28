@@ -1,4 +1,4 @@
-import Axis_Primitive
+import Axis
 import Finite
 import Ordinal
 

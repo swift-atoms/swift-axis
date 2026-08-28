@@ -13,11 +13,6 @@ let package = Package(
     products: [
 
         .library(
-            name: "Axis Primitive",
-            targets: ["Axis Primitive"]
-        ),
-
-        .library(
             name: "Axis Equation",
             targets: ["Axis Equation"]
         ),
@@ -46,51 +41,51 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-molecules/swift-equation.git",
+            url: "https://github.com/swift-atoms/swift-equation.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-hash.git",
+            url: "https://github.com/swift-atoms/swift-hash.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-comparison.git",
+            url: "https://github.com/swift-atoms/swift-comparison.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-finite.git",
+            url: "https://github.com/swift-atoms/swift-finite.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-ordinal.git",
+            url: "https://github.com/swift-atoms/swift-ordinal.git",
             branch: "main"
         ),
     ],
     targets: [
 
         .target(
-            name: "Axis Primitive",
+            name: "Axis",
             dependencies: []
         ),
 
         .target(
             name: "Axis Equation",
             dependencies: [
-                "Axis Primitive",
+                .target(name: "Axis"),
                 .product(name: "Equation", package: "swift-equation"),
             ]
         ),
         .target(
             name: "Axis Hash",
             dependencies: [
-                "Axis Primitive",
+                .target(name: "Axis"),
                 .product(name: "Hash", package: "swift-hash"),
             ]
         ),
         .target(
             name: "Axis Comparison",
             dependencies: [
-                "Axis Primitive",
+                .target(name: "Axis"),
                 .product(name: "Comparison", package: "swift-comparison"),
             ]
         ),
@@ -98,27 +93,16 @@ let package = Package(
         .target(
             name: "Axis Enumerable",
             dependencies: [
-                "Axis Primitive",
+                .target(name: "Axis"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
 
         .target(
-            name: "Axis",
-            dependencies: [
-                "Axis Primitive",
-                "Axis Equation",
-                "Axis Hash",
-                "Axis Comparison",
-                "Axis Enumerable",
-            ]
-        ),
-
-        .target(
             name: "Axis Test Support",
             dependencies: [
-                "Axis",
+                .target(name: "Axis"),
                 .product(
                     name: "Ordinal Test Support",
                     package: "swift-ordinal"
@@ -130,8 +114,8 @@ let package = Package(
         .testTarget(
             name: "Axis Tests",
             dependencies: [
-                "Axis",
-                "Axis Test Support",
+                .target(name: "Axis"),
+                .target(name: "Axis Test Support"),
             ]
         ),
     ],
