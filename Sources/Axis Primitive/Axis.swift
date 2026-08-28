@@ -19,7 +19,7 @@ extension Axis {
     public typealias Error = __AxisError
 }
 
-extension Axis: Equatable, Hashable, Comparable {
+extension Axis {
 
     @inlinable
     public static func == (lhs: Axis, rhs: Axis) -> Bool {
@@ -51,6 +51,34 @@ extension Axis: Equatable, Hashable, Comparable {
         hasher.combine(underlying)
     }
 }
+
+#if !hasFeature(Embedded)
+
+    extension Axis: Codable {
+
+        public init(from decoder: any Decoder) throws(any Swift.Error) {
+            let container = try decoder.singleValueContainer()
+            let value = try container.decode(Int.self)
+            do throws(Self.Error) {
+                self = try Self(value)
+            } catch {
+                throw DecodingError.dataCorrupted(
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription:
+                            "Axis index \(value) out of bounds for \(N)-dimensional space"
+                    )
+                )
+            }
+        }
+
+        public func encode(to encoder: any Encoder) throws(any Swift.Error) {
+            var container = encoder.singleValueContainer()
+            try container.encode(underlying)
+        }
+    }
+
+#endif
 
 extension Axis where N == 1 {
 

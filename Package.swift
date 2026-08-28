@@ -11,39 +11,128 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
+
+        .library(
+            name: "Axis Primitive",
+            targets: ["Axis Primitive"]
+        ),
+
+        .library(
+            name: "Axis Equation",
+            targets: ["Axis Equation"]
+        ),
+        .library(
+            name: "Axis Hash",
+            targets: ["Axis Hash"]
+        ),
+        .library(
+            name: "Axis Comparison",
+            targets: ["Axis Comparison"]
+        ),
+        .library(
+            name: "Axis Enumerable",
+            targets: ["Axis Enumerable"]
+        ),
+
         .library(
             name: "Axis",
             targets: ["Axis"]
         ),
+
         .library(
-            name: "Axis Standard Library Integration",
-            targets: ["Axis Standard Library Integration"]
-        ),
-        .library(
-            name: "Axis Apple Foundation Integration",
-            targets: ["Axis Apple Foundation Integration"]
+            name: "Axis Test Support",
+            targets: ["Axis Test Support"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/swift-molecules/swift-equation.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-molecules/swift-hash.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-molecules/swift-comparison.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-molecules/swift-finite.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-molecules/swift-ordinal.git",
+            branch: "main"
+        ),
+    ],
     targets: [
+
         .target(
-            name: "Axis",
+            name: "Axis Primitive",
             dependencies: []
         ),
+
         .target(
-            name: "Axis Standard Library Integration",
-            dependencies: ["Axis"]
-        ),
-        .target(
-            name: "Axis Apple Foundation Integration",
+            name: "Axis Equation",
             dependencies: [
-                "Axis",
-                "Axis Standard Library Integration",
+                "Axis Primitive",
+                .product(name: "Equation", package: "swift-equation"),
             ]
         ),
+        .target(
+            name: "Axis Hash",
+            dependencies: [
+                "Axis Primitive",
+                .product(name: "Hash", package: "swift-hash"),
+            ]
+        ),
+        .target(
+            name: "Axis Comparison",
+            dependencies: [
+                "Axis Primitive",
+                .product(name: "Comparison", package: "swift-comparison"),
+            ]
+        ),
+
+        .target(
+            name: "Axis Enumerable",
+            dependencies: [
+                "Axis Primitive",
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
+            ]
+        ),
+
+        .target(
+            name: "Axis",
+            dependencies: [
+                "Axis Primitive",
+                "Axis Equation",
+                "Axis Hash",
+                "Axis Comparison",
+                "Axis Enumerable",
+            ]
+        ),
+
+        .target(
+            name: "Axis Test Support",
+            dependencies: [
+                "Axis",
+                .product(
+                    name: "Ordinal Test Support",
+                    package: "swift-ordinal"
+                ),
+            ],
+            path: "Tests/Support"
+        ),
+
         .testTarget(
             name: "Axis Tests",
-            dependencies: ["Axis"]
+            dependencies: [
+                "Axis",
+                "Axis Test Support",
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]
