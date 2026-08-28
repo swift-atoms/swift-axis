@@ -1,4 +1,4 @@
 public import Axis
-public import Hash
+public import Hash_Protocol
 
-extension Axis: Hash.`Protocol` {}
+extension Axis::Axis: Hash::Hash.`Protocol` {}

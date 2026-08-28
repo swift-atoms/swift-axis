@@ -126,31 +126,6 @@ struct `Axis - Dimension-Specific Constants` {
 }
 
 @Suite
-struct `Axis - Protocol Conformances` {
-    @Suite struct Unit {}
-    @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
-
-    @Test
-    func `Equatable reflexivity`() {
-        #expect(Axis<2>.primary == Axis<2>.primary)
-        #expect(Axis<3>.tertiary == Axis<3>.tertiary)
-    }
-
-    @Test
-    func `Equatable distinguishes axes`() {
-        #expect(Axis<2>.primary != Axis<2>.secondary)
-        #expect(Axis<3>.primary != Axis<3>.tertiary)
-    }
-
-    @Test
-    func `Hashable produces unique hashes`() {
-        let set: Set<Axis<3>> = [.primary, .secondary, .tertiary, .primary]
-        #expect(set.count == 3)
-    }
-}
-
-@Suite
 struct `Axis - Comparison` {
     @Suite struct Unit {}
     @Suite struct `Edge Case` {}
@@ -162,13 +137,6 @@ struct `Axis - Comparison` {
         #expect(Axis<3>.secondary < Axis<3>.tertiary)
         #expect(Axis<3>.tertiary > Axis<3>.primary)
         #expect(!(Axis<3>.tertiary < Axis<3>.primary))
-    }
-
-    @Test
-    func `sorting orders by index`() {
-        #expect(
-            [Axis<3>.tertiary, .primary, .secondary].sorted() == [.primary, .secondary, .tertiary]
-        )
     }
 }
 

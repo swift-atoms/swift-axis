@@ -1,4 +1,4 @@
 public import Axis
-public import Comparison
+public import Comparison_Protocol
 
-extension Axis: Comparison.`Protocol` {}
+extension Axis::Axis: Comparison::Comparison.`Protocol` {}
