@@ -12,6 +12,7 @@ Dimension-checked coordinate-axis selection for Swift — `Axis<N>` identifies o
 
 ```swift
 import Axis
+import Axis_Enumerable
 
 // Per-arity accessors give the basis directions by name.
 let x: Axis<3> = .primary      // index 0 (X)
@@ -48,6 +49,7 @@ dependencies: [
     name: "App",
     dependencies: [
         .product(name: "Axis", package: "swift-axis"),
+        .product(name: "Axis Enumerable", package: "swift-axis"),
     ]
 )
 ```
@@ -58,17 +60,16 @@ Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 
 
 ## Architecture
 
-The root `Axis Primitive` target is zero-dependency; each protocol conformance lives in its own sub-target so consumers import only what they use.
+The canonical `Axis` target is zero-dependency; each protocol conformance lives in its own focused target so consumers import only what they use.
 
 | Product | Depends on | When to import |
 |---------|-----------|----------------|
-| `Axis Primitive` | — | The `Axis<N>` value type, `Axis.Error`, per-arity accessors (`.primary` / `.secondary` / `.tertiary` / `.quaternary`, 2D `.perpendicular`), and conditional `Codable`. |
-| `Axis Equation Primitives` | `swift-equation` | `Equation.Protocol` conformance (institute `Equatable` twin). |
-| `Axis Hash Primitives` | `swift-hash` | `Hash.Protocol` conformance (institute `Hashable` twin). |
-| `Axis Comparison Primitives` | `swift-comparison` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
-| `Axis Enumerable Primitives` | `swift-finite`, `swift-ordinal` | `Finite.Enumerable` conformance: `.count`, `.ordinal`, `.allCases`. |
-| `Axis Primitives` | all of the above | Umbrella re-exporting every sub-target. |
-| `Axis Test Support` | `Axis Primitives` | Test-only spine re-exporting upstream Test Support for literal comparisons. |
+| `Axis` | — | The `Axis<N>` value type, `Axis.Error`, per-arity accessors (`.primary` / `.secondary` / `.tertiary` / `.quaternary`, 2D `.perpendicular`), and conditional `Codable`. |
+| `Axis Equation` | `swift-equation` | `Equation.Protocol` conformance (institute `Equatable` twin). |
+| `Axis Hash` | `swift-hash` | `Hash.Protocol` conformance (institute `Hashable` twin). |
+| `Axis Comparison` | `swift-comparison` | `Comparison.Protocol` conformance (institute `Comparable` twin), ordered by index. |
+| `Axis Enumerable` | `swift-cardinal`, focused `swift-finite`, `swift-ordinal` products | `Finite.Enumerable` conformance with typed `Cardinal` count, `Ordinal` position, and typed `.allCases` indices. |
+| `Axis Test Support` | `Axis`, `Ordinal Test Support` | Test-only support for literal comparisons. |
 
 The `Direction` sign factor lives in `swift-direction`; the composite `Facet<N> = Axis<N> × Direction` lives in `swift-facet`.
 

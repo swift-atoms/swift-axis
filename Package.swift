@@ -41,6 +41,10 @@ let package = Package(
     ],
     dependencies: [
         .package(
+            url: "https://github.com/swift-atoms/swift-cardinal.git",
+            branch: "main"
+        ),
+        .package(
             url: "https://github.com/swift-atoms/swift-equation.git",
             branch: "main"
         ),
@@ -72,21 +76,21 @@ let package = Package(
             name: "Axis Equation",
             dependencies: [
                 .target(name: "Axis"),
-                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Equation Protocol", package: "swift-equation"),
             ]
         ),
         .target(
             name: "Axis Hash",
             dependencies: [
                 .target(name: "Axis"),
-                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Hash Protocol", package: "swift-hash"),
             ]
         ),
         .target(
             name: "Axis Comparison",
             dependencies: [
                 .target(name: "Axis"),
-                .product(name: "Comparison", package: "swift-comparison"),
+                .product(name: "Comparison Protocol", package: "swift-comparison"),
             ]
         ),
 
@@ -94,7 +98,9 @@ let package = Package(
             name: "Axis Enumerable",
             dependencies: [
                 .target(name: "Axis"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Finite Enumerable", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
@@ -115,7 +121,42 @@ let package = Package(
             name: "Axis Tests",
             dependencies: [
                 .target(name: "Axis"),
+            ]
+        ),
+        .testTarget(
+            name: "Axis Equation Tests",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Equation"),
+                .product(name: "Equation Protocol", package: "swift-equation"),
+            ]
+        ),
+        .testTarget(
+            name: "Axis Hash Tests",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Hash"),
+                .product(name: "Hash Protocol", package: "swift-hash"),
+            ]
+        ),
+        .testTarget(
+            name: "Axis Comparison Tests",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Comparison"),
+                .product(name: "Comparison Protocol", package: "swift-comparison"),
+            ]
+        ),
+        .testTarget(
+            name: "Axis Enumerable Tests",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Enumerable"),
                 .target(name: "Axis Test Support"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Finite Enumerable", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
     ],

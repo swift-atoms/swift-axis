@@ -1,17 +1,19 @@
-import Axis
-import Finite
-import Ordinal
+public import Axis
+public import Cardinal
+public import Finite
+public import Finite_Enumerable
+public import Ordinal
 
-extension Axis: Finite.Enumerable {
-
-    @inlinable
-    public static var count: Cardinal { Cardinal(integerLiteral: UInt(N)) }
-
-    @inlinable
-    public var ordinal: Ordinal { .init(UInt8(underlying)) }
+extension Axis::Axis: Finite::Finite.Enumerable {
 
     @inlinable
-    public init(_unchecked: Void, ordinal: Ordinal) {
-        self.init(_unchecked: (), Int(bitPattern: ordinal))
+    public static var count: Cardinal::Cardinal { Cardinal::Cardinal(UInt(N)) }
+
+    @inlinable
+    public var ordinal: Ordinal::Ordinal { Ordinal::Ordinal(UInt(underlying)) }
+
+    @inlinable
+    public init(_unchecked: Void, ordinal: Ordinal::Ordinal) {
+        self.init(_unchecked: (), Int(bitPattern: ordinal.rawValue))
     }
 }
