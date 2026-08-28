@@ -138,6 +138,18 @@ struct `Axis - Comparison` {
         #expect(Axis<3>.tertiary > Axis<3>.primary)
         #expect(!(Axis<3>.tertiary < Axis<3>.primary))
     }
+
+    @Test
+    func `standard conformances are intrinsic`() {
+        func acceptsComparable<T: Comparable>(_ value: T) -> T { value }
+        func acceptsHashable<T: Hashable>(_ value: T) -> T { value }
+
+        let values: Set<Axis<3>> = [.primary, .secondary, .primary]
+
+        #expect(acceptsComparable(Axis<3>.secondary) == .secondary)
+        #expect(acceptsHashable(Axis<3>.tertiary) == .tertiary)
+        #expect(values.count == 2)
+    }
 }
 
 @Suite

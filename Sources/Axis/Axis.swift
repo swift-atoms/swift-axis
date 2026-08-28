@@ -1,4 +1,4 @@
-public struct Axis<let N: Int>: Sendable {
+public struct Axis<let N: Int>: Hashable, Comparable, Sendable {
 
     public let underlying: Int
 
