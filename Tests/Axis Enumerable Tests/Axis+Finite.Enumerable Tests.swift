@@ -131,7 +131,8 @@ struct `Axis+Finite.Enumerable - Iteration` {
     func `allCases supports RandomAccessCollection operations`() {
         let allCases = Axis<5>.allCases
         #expect(allCases.count == 5)
-        #expect(allCases[2].underlying == 2)
+        let third = allCases.index(allCases.startIndex, offsetBy: 2)
+        #expect(allCases[third].underlying == 2)
         #expect(allCases.first?.underlying == 0)
         #expect(allCases.last?.underlying == 4)
     }
