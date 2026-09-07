@@ -3,7 +3,7 @@ import Comparison
 import Testing
 
 @Suite
-struct `Axis Comparison Tests` {
+struct `Axis comparison protocols order values by index` {
     @Test
     func `Axis conforms to Comparison Protocol`() {
         func acceptsComparison<T: Comparison::Comparison.`Protocol`>(_ value: T) -> T { value }

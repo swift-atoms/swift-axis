@@ -3,7 +3,7 @@ import Hash
 import Testing
 
 @Suite
-struct `Axis Hash Tests` {
+struct `Axis hash protocols preserve distinct axis identities` {
     @Test
     func `Axis conforms to Hash Protocol`() {
         func acceptsHash<T: Hash::Hash.`Protocol`>(_ value: T) -> T { value }

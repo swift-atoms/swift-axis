@@ -6,10 +6,10 @@ import Ordinal
 import Testing
 
 @Suite
-struct `Axis+Finite.Enumerable - Enumerable` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Finite axis enumeration maps each index to one axis` {
+    @Suite struct `No axis enumeration unit cases are defined` {}
+    @Suite struct `No axis enumeration boundary cases are defined` {}
+    @Suite struct `No axis enumeration integration cases are defined` {}
 
     @Test
     func `count equals dimension`() {
@@ -42,7 +42,7 @@ struct `Axis+Finite.Enumerable - Enumerable` {
     }
 
     @Test(arguments: [0, 1, 2, 3])
-    func `index roundtrip`(index: Int) {
+    func `Axis indices round trip through construction`(index: Int) {
         let axis: Axis<4>?
         do throws(Axis<4>.Error) {
             axis = try Axis(index)
@@ -62,10 +62,10 @@ struct `Axis+Finite.Enumerable - Enumerable` {
 }
 
 @Suite
-struct `Axis+Finite.Enumerable - AllCases` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis case collections contain every dimension index in order` {
+    @Suite struct `No axis case collection unit cases are defined` {}
+    @Suite struct `No axis case collection boundary cases are defined` {}
+    @Suite struct `No axis case collection integration cases are defined` {}
 
     @Test
     func `allCases for 1D has 1 element`() {
@@ -111,13 +111,13 @@ struct `Axis+Finite.Enumerable - AllCases` {
 }
 
 @Suite
-struct `Axis+Finite.Enumerable - Iteration` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis iteration preserves ordered random access traversal` {
+    @Suite struct `No axis iteration unit cases are defined` {}
+    @Suite struct `No axis iteration boundary cases are defined` {}
+    @Suite struct `No axis iteration integration cases are defined` {}
 
     @Test
-    func `for-in loop over allCases`() {
+    func `Axis case iteration visits every index in order`() {
         var indices: [Int] = []
         for axis in Axis<3>.allCases {
             indices.append(axis.underlying)

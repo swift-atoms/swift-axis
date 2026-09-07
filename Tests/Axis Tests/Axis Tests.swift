@@ -2,10 +2,10 @@ import Axis
 import Testing
 
 @Suite
-struct `Axis - Static Functions` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Two dimensional axes exchange perpendicular positions` {
+    @Suite struct `No axis perpendicular operation unit cases are defined` {}
+    @Suite struct `No axis perpendicular operation boundary cases are defined` {}
+    @Suite struct `No axis perpendicular operation integration cases are defined` {}
 
     @Test(arguments: [Axis<2>.primary, Axis<2>.secondary])
     func `perpendicular is involution in 2D`(axis: Axis<2>) {
@@ -26,10 +26,10 @@ struct `Axis - Static Functions` {
 }
 
 @Suite
-struct `Axis - Properties` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis properties preserve indices and perpendicular behavior` {
+    @Suite struct `No axis property unit cases are defined` {}
+    @Suite struct `No axis property boundary cases are defined` {}
+    @Suite struct `No axis property integration cases are defined` {}
 
     @Test(arguments: [Axis<2>.primary, Axis<2>.secondary])
     func `perpendicular property delegates to static function`(axis: Axis<2>) {
@@ -37,7 +37,7 @@ struct `Axis - Properties` {
     }
 
     @Test(arguments: [0, 1, 2, 3])
-    func `underlying accessor`(value: Int) {
+    func `Axis underlying values preserve their construction index`(value: Int) {
         let axis: Axis<5>?
         do throws(Axis<5>.Error) {
             axis = try Axis(value)
@@ -49,13 +49,13 @@ struct `Axis - Properties` {
 }
 
 @Suite
-struct `Axis - Initializers` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis construction accepts exactly the indices within its dimension` {
+    @Suite struct `No axis initialization unit cases are defined` {}
+    @Suite struct `No axis initialization boundary cases are defined` {}
+    @Suite struct `No axis initialization integration cases are defined` {}
 
     @Test(arguments: [0, 1, 2, 3, 4])
-    func `init with valid index`(value: Int) {
+    func `Axis construction preserves indices within the dimension`(value: Int) {
         let axis: Axis<5>?
         do throws(Axis<5>.Error) {
             axis = try Axis(value)
@@ -67,7 +67,7 @@ struct `Axis - Initializers` {
     }
 
     @Test(arguments: [-1, 5, 10])
-    func `init with invalid index returns nil`(value: Int) {
+    func `Invalid axis construction leaves no axis value`(value: Int) {
         let axis: Axis<5>?
         do throws(Axis<5>.Error) {
             axis = try Axis(value)
@@ -93,10 +93,10 @@ struct `Axis - Initializers` {
 }
 
 @Suite
-struct `Axis - Dimension-Specific Constants` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis constants identify the available dimension positions` {
+    @Suite struct `No axis constant unit cases are defined` {}
+    @Suite struct `No axis constant boundary cases are defined` {}
+    @Suite struct `No axis constant integration cases are defined` {}
 
     @Test
     func `1D has only primary`() {
@@ -126,13 +126,13 @@ struct `Axis - Dimension-Specific Constants` {
 }
 
 @Suite
-struct `Axis - Comparison` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis ordering and hashing preserve index identity` {
+    @Suite struct `No axis comparison unit cases are defined` {}
+    @Suite struct `No axis comparison boundary cases are defined` {}
+    @Suite struct `No axis comparison integration cases are defined` {}
 
     @Test
-    func `orders by index`() {
+    func `Axis ordering follows the stored index`() {
         #expect(Axis<3>.primary < Axis<3>.secondary)
         #expect(Axis<3>.secondary < Axis<3>.tertiary)
         #expect(Axis<3>.tertiary > Axis<3>.primary)
@@ -153,10 +153,10 @@ struct `Axis - Comparison` {
 }
 
 @Suite
-struct `Axis - Type Safety` {
-    @Suite struct `Unit` {}
-    @Suite struct `Edge Case` {}
-    @Suite struct `Integration` {}
+struct `Axis types retain their dimension in typed operations` {
+    @Suite struct `No axis dimension type unit cases are defined` {}
+    @Suite struct `No axis dimension type boundary cases are defined` {}
+    @Suite struct `No axis dimension type integration cases are defined` {}
 
     @Test
     func `Axes of different dimensions have same index but different types`() {

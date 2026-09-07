@@ -3,7 +3,7 @@ import Equation
 import Testing
 
 @Suite
-struct `Axis Equation Tests` {
+struct `Axis equation protocols distinguish dimension positions` {
     @Test
     func `Axis conforms to Equation Protocol`() {
         func acceptsEquation<T: Equation::Equation.`Protocol`>(_ value: T) -> T { value }
