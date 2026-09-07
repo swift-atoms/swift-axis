@@ -16,11 +16,6 @@ public struct Axis<let N: Int>: Hashable, Comparable, Sendable {
 
 extension Axis {
 
-    public typealias Error = __AxisError
-}
-
-extension Axis {
-
     @inlinable
     public static func == (lhs: Axis, rhs: Axis) -> Bool {
         lhs.underlying == rhs.underlying

@@ -3,9 +3,9 @@ import Testing
 
 @Suite
 struct `Axis - Static Functions` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test(arguments: [Axis<2>.primary, Axis<2>.secondary])
     func `perpendicular is involution in 2D`(axis: Axis<2>) {
@@ -27,9 +27,9 @@ struct `Axis - Static Functions` {
 
 @Suite
 struct `Axis - Properties` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test(arguments: [Axis<2>.primary, Axis<2>.secondary])
     func `perpendicular property delegates to static function`(axis: Axis<2>) {
@@ -50,9 +50,9 @@ struct `Axis - Properties` {
 
 @Suite
 struct `Axis - Initializers` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test(arguments: [0, 1, 2, 3, 4])
     func `init with valid index`(value: Int) {
@@ -94,9 +94,9 @@ struct `Axis - Initializers` {
 
 @Suite
 struct `Axis - Dimension-Specific Constants` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `1D has only primary`() {
@@ -127,9 +127,9 @@ struct `Axis - Dimension-Specific Constants` {
 
 @Suite
 struct `Axis - Comparison` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `orders by index`() {
@@ -154,9 +154,9 @@ struct `Axis - Comparison` {
 
 @Suite
 struct `Axis - Type Safety` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `Axes of different dimensions have same index but different types`() {

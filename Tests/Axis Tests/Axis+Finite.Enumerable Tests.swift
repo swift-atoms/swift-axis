@@ -7,9 +7,9 @@ import Testing
 
 @Suite
 struct `Axis+Finite.Enumerable - Enumerable` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `count equals dimension`() {
@@ -63,9 +63,9 @@ struct `Axis+Finite.Enumerable - Enumerable` {
 
 @Suite
 struct `Axis+Finite.Enumerable - AllCases` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `allCases for 1D has 1 element`() {
@@ -112,9 +112,9 @@ struct `Axis+Finite.Enumerable - AllCases` {
 
 @Suite
 struct `Axis+Finite.Enumerable - Iteration` {
-    @Suite struct Unit {}
+    @Suite struct `Unit` {}
     @Suite struct `Edge Case` {}
-    @Suite struct Integration {}
+    @Suite struct `Integration` {}
 
     @Test
     func `for-in loop over allCases`() {
