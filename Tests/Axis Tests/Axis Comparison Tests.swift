@@ -1,6 +1,5 @@
 import Axis
-import Axis_Comparison
-import Comparison_Protocol
+import Comparison
 import Testing
 
 @Suite

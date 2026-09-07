@@ -1,4 +1,3 @@
-public import Axis
-public import Equation_Protocol
+public import Equation
 
 extension Axis::Axis: Equation::Equation.`Protocol` {}

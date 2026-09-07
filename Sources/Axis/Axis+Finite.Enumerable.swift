@@ -1,7 +1,5 @@
-public import Axis
 public import Cardinal
 public import Finite
-public import Finite_Enumerable
 public import Ordinal
 
 extension Axis::Axis: Finite::Finite.Enumerable {

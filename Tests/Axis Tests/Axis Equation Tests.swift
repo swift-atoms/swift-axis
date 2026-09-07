@@ -1,6 +1,5 @@
 import Axis
-import Axis_Equation
-import Equation_Protocol
+import Equation
 import Testing
 
 @Suite

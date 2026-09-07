@@ -1,6 +1,5 @@
 import Axis
-import Axis_Hash
-import Hash_Protocol
+import Hash
 import Testing
 
 @Suite

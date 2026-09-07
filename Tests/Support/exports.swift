@@ -1,2 +1,2 @@
-internal import Axis
+@_exported public import Axis
 @_exported public import Ordinal

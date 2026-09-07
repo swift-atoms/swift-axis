@@ -1,9 +1,7 @@
 import Axis
-import Axis_Enumerable
 import Axis_Test_Support
 import Cardinal
 import Finite
-import Finite_Enumerable
 import Ordinal
 import Testing
 

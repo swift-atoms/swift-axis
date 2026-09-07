@@ -11,33 +11,10 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-
-        .library(
-            name: "Axis Equation",
-            targets: ["Axis Equation"]
-        ),
-        .library(
-            name: "Axis Hash",
-            targets: ["Axis Hash"]
-        ),
-        .library(
-            name: "Axis Comparison",
-            targets: ["Axis Comparison"]
-        ),
-        .library(
-            name: "Axis Enumerable",
-            targets: ["Axis Enumerable"]
-        ),
-
-        .library(
-            name: "Axis",
-            targets: ["Axis"]
-        ),
-
-        .library(
-            name: "Axis Test Support",
-            targets: ["Axis Test Support"]
-        ),
+        .library(name: "Axis", targets: ["Axis"]),
+        .library(name: "Axis Standard Library Integration", targets: ["Axis Standard Library Integration"]),
+        .library(name: "Axis Foundation Library Integration", targets: ["Axis Foundation Library Integration"]),
+        .library(name: "Axis Test Support", targets: ["Axis Test Support"]),
     ],
     dependencies: [
         .package(
@@ -66,105 +43,63 @@ let package = Package(
         ),
     ],
     targets: [
-
         .target(
             name: "Axis",
-            dependencies: []
-        ),
-
-        .target(
-            name: "Axis Equation",
             dependencies: [
-                .target(name: "Axis"),
-                .product(name: "Equation Protocol", package: "swift-equation"),
-            ]
-        ),
-        .target(
-            name: "Axis Hash",
-            dependencies: [
-                .target(name: "Axis"),
-                .product(name: "Hash Protocol", package: "swift-hash"),
-            ]
-        ),
-        .target(
-            name: "Axis Comparison",
-            dependencies: [
-                .target(name: "Axis"),
-                .product(name: "Comparison Protocol", package: "swift-comparison"),
-            ]
-        ),
-
-        .target(
-            name: "Axis Enumerable",
-            dependencies: [
-                .target(name: "Axis"),
+                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Comparison", package: "swift-comparison"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Finite Enumerable", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
-            ]
+            ],
+            path: "Sources/Axis"
         ),
-
+        .target(
+            name: "Axis Standard Library Integration",
+            dependencies: [
+                .target(name: "Axis"),
+            ],
+            path: "Sources/Axis Standard Library Integration"
+        ),
+        .target(
+            name: "Axis Foundation Library Integration",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Standard Library Integration"),
+            ],
+            path: "Sources/Axis Foundation Library Integration"
+        ),
         .target(
             name: "Axis Test Support",
             dependencies: [
                 .target(name: "Axis"),
-                .product(
-                    name: "Ordinal Test Support",
-                    package: "swift-ordinal"
-                ),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ],
             path: "Tests/Support"
         ),
-
         .testTarget(
             name: "Axis Tests",
             dependencies: [
                 .target(name: "Axis"),
-            ]
-        ),
-        .testTarget(
-            name: "Axis Equation Tests",
-            dependencies: [
-                .target(name: "Axis"),
-                .target(name: "Axis Equation"),
-                .product(name: "Equation Protocol", package: "swift-equation"),
-            ]
-        ),
-        .testTarget(
-            name: "Axis Hash Tests",
-            dependencies: [
-                .target(name: "Axis"),
-                .target(name: "Axis Hash"),
-                .product(name: "Hash Protocol", package: "swift-hash"),
-            ]
-        ),
-        .testTarget(
-            name: "Axis Comparison Tests",
-            dependencies: [
-                .target(name: "Axis"),
-                .target(name: "Axis Comparison"),
-                .product(name: "Comparison Protocol", package: "swift-comparison"),
-            ]
-        ),
-        .testTarget(
-            name: "Axis Enumerable Tests",
-            dependencies: [
-                .target(name: "Axis"),
-                .target(name: "Axis Enumerable"),
+                .product(name: "Equation", package: "swift-equation"),
+                .product(name: "Hash", package: "swift-hash"),
+                .product(name: "Comparison", package: "swift-comparison"),
                 .target(name: "Axis Test Support"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Finite Enumerable", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
-            ]
+                .target(name: "Axis Standard Library Integration"),
+                .target(name: "Axis Foundation Library Integration"),
+            ],
+            path: "Tests/Axis Tests"
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+for target in package.targets {
+    target.swiftSettings = [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
@@ -173,8 +108,4 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }
