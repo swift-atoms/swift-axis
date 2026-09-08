@@ -17,6 +17,7 @@ let package = Package(
         .library(name: "Axis Test Support", targets: ["Axis Test Support"]),
     ],
     dependencies: [
+
         .package(
             url: "https://github.com/swift-atoms/swift-cardinal.git",
             branch: "main"
@@ -85,6 +86,33 @@ let package = Package(
                 .target(name: "Axis Foundation Integration"),
             ],
             path: "Tests/Axis Tests"
+        ),
+        .testTarget(
+            name: "Consolidated Axis Comparison Tests",
+            dependencies: [
+
+                .target(name: "Axis"),
+                .product(name: "Comparison", package: "swift-comparison"),
+            ],
+            path: "Tests/Consolidated swift-axis-comparison"
+        ),
+        .testTarget(
+            name: "Consolidated Axis Equation Tests",
+            dependencies: [
+
+                .target(name: "Axis"),
+                .product(name: "Equation", package: "swift-equation"),
+            ],
+            path: "Tests/Consolidated swift-axis-equation"
+        ),
+        .testTarget(
+            name: "Consolidated Axis Hash Tests",
+            dependencies: [
+
+                .target(name: "Axis"),
+                .product(name: "Hash", package: "swift-hash"),
+            ],
+            path: "Tests/Consolidated swift-axis-hash"
         ),
     ],
     swiftLanguageModes: [.v6]
