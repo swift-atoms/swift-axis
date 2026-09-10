@@ -1,4 +1,3 @@
-# .github/metadata.yaml
 description: "Orthogonal coordinate axes for Swift — a generic Axis over N dimensions with per-arity accessors."
 topics:
   - primitives
