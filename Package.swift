@@ -23,18 +23,6 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-atoms/swift-equation.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-hash.git",
-            branch: "main"
-        ),
-        .package(
-            url: "https://github.com/swift-atoms/swift-comparison.git",
-            branch: "main"
-        ),
-        .package(
             url: "https://github.com/swift-atoms/swift-finite.git",
             branch: "main"
         ),
@@ -47,9 +35,6 @@ let package = Package(
         .target(
             name: "Axis",
             dependencies: [
-                .product(name: "Equation", package: "swift-equation"),
-                .product(name: "Hash", package: "swift-hash"),
-                .product(name: "Comparison", package: "swift-comparison"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
@@ -76,9 +61,6 @@ let package = Package(
             name: "Axis Tests",
             dependencies: [
                 .target(name: "Axis"),
-                .product(name: "Equation", package: "swift-equation"),
-                .product(name: "Hash", package: "swift-hash"),
-                .product(name: "Comparison", package: "swift-comparison"),
                 .target(name: "Axis Test Support"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
@@ -86,33 +68,6 @@ let package = Package(
                 .target(name: "Axis Foundation Integration"),
             ],
             path: "Tests/Axis Tests"
-        ),
-        .testTarget(
-            name: "Consolidated Axis Comparison Tests",
-            dependencies: [
-
-                .target(name: "Axis"),
-                .product(name: "Comparison", package: "swift-comparison"),
-            ],
-            path: "Tests/Consolidated swift-axis-comparison"
-        ),
-        .testTarget(
-            name: "Consolidated Axis Equation Tests",
-            dependencies: [
-
-                .target(name: "Axis"),
-                .product(name: "Equation", package: "swift-equation"),
-            ],
-            path: "Tests/Consolidated swift-axis-equation"
-        ),
-        .testTarget(
-            name: "Consolidated Axis Hash Tests",
-            dependencies: [
-
-                .target(name: "Axis"),
-                .product(name: "Hash", package: "swift-hash"),
-            ],
-            path: "Tests/Consolidated swift-axis-hash"
         ),
     ],
     swiftLanguageModes: [.v6]

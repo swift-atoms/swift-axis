@@ -1,12 +1,11 @@
 import Axis
-import Equation
 import Testing
 
 @Suite
 struct `Axis equation protocols distinguish dimension positions` {
     @Test
-    func `Axis conforms to Equation Protocol`() {
-        func acceptsEquation<T: Equation::Equation.`Protocol`>(_ value: T) -> T { value }
+    func `Axis conforms to Equatable`() {
+        func acceptsEquation<T: Swift.Equatable>(_ value: T) -> T { value }
 
         #expect(acceptsEquation(Axis<3>.secondary) == .secondary)
     }

@@ -1,12 +1,11 @@
 import Axis
-import Hash
 import Testing
 
 @Suite
 struct `Axis hash protocols preserve distinct axis identities` {
     @Test
-    func `Axis conforms to Hash Protocol`() {
-        func acceptsHash<T: Hash::Hash.`Protocol`>(_ value: T) -> T { value }
+    func `Axis conforms to Hashable`() {
+        func acceptsHash<T: Swift.Hashable>(_ value: T) -> T { value }
 
         #expect(acceptsHash(Axis<3>.secondary) == .secondary)
     }

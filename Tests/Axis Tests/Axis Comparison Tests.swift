@@ -1,12 +1,11 @@
 import Axis
-import Comparison
 import Testing
 
 @Suite
 struct `Axis comparison protocols order values by index` {
     @Test
-    func `Axis conforms to Comparison Protocol`() {
-        func acceptsComparison<T: Comparison::Comparison.`Protocol`>(_ value: T) -> T { value }
+    func `Axis conforms to Comparable`() {
+        func acceptsComparison<T: Swift.Comparable>(_ value: T) -> T { value }
 
         #expect(acceptsComparison(Axis<3>.secondary) == .secondary)
     }
