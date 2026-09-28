@@ -12,7 +12,6 @@ let package = Package(
     ],
     products: [
         .library(name: "Axis", targets: ["Axis"]),
-
         .library(name: "Axis Foundation Integration", targets: ["Axis Foundation Integration"]),
         .library(name: "Axis Test Support", targets: ["Axis Test Support"]),
     ],
@@ -32,6 +31,16 @@ let package = Package(
         ),
     ],
     targets: [
+        .testTarget(
+            name: "Axis Finite Integration Tests",
+            dependencies: [
+                .target(name: "Axis"),
+                .target(name: "Axis Test Support"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
+            ],
+            path: "Tests/Axis Finite Integration Tests"
+        ),
         .target(
             name: "Axis",
             dependencies: [
@@ -41,7 +50,7 @@ let package = Package(
             ],
             path: "Sources/Axis"
         ),
-        
+
         .target(
             name: "Axis Foundation Integration",
             dependencies: [
