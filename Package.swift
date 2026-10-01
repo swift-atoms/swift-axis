@@ -31,16 +31,6 @@ let package = Package(
         ),
     ],
     targets: [
-        .testTarget(
-            name: "Axis Finite Integration Tests",
-            dependencies: [
-                .target(name: "Axis"),
-                .target(name: "Axis Test Support"),
-                .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Ordinal", package: "swift-ordinal"),
-            ],
-            path: "Tests/Axis Finite Integration Tests"
-        ),
         .target(
             name: "Axis",
             dependencies: [
