@@ -5,7 +5,7 @@ import Testing
 struct `Axis comparison protocols order values by index` {
     @Test
     func `Axis conforms to Comparable`() {
-        func acceptsComparison<T: Swift.Comparable>(_ value: T) -> T { value }
+        func acceptsComparison<T: Swift::Comparable>(_ value: T) -> T { value }
 
         #expect(acceptsComparison(Axis<3>.secondary) == .secondary)
     }

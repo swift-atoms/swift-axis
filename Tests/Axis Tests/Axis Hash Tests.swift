@@ -5,7 +5,7 @@ import Testing
 struct `Axis hash protocols preserve distinct axis identities` {
     @Test
     func `Axis conforms to Hashable`() {
-        func acceptsHash<T: Swift.Hashable>(_ value: T) -> T { value }
+        func acceptsHash<T: Swift::Hashable>(_ value: T) -> T { value }
 
         #expect(acceptsHash(Axis<3>.secondary) == .secondary)
     }

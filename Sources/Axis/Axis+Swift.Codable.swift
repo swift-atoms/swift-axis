@@ -1,7 +1,7 @@
 #if !hasFeature(Embedded)
-extension Axis: Swift.Codable {
+extension Axis: Swift::Codable {
 
-        public init(from decoder: any Decoder) throws(any Swift.Error) {
+        public init(from decoder: any Decoder) throws(any Swift::Error) {
             let container = try decoder.singleValueContainer()
             let value = try container.decode(Int.self)
             do throws(Self.Error) {
@@ -17,7 +17,7 @@ extension Axis: Swift.Codable {
             }
         }
 
-        public func encode(to encoder: any Encoder) throws(any Swift.Error) {
+        public func encode(to encoder: any Encoder) throws(any Swift::Error) {
             var container = encoder.singleValueContainer()
             try container.encode(underlying)
         }

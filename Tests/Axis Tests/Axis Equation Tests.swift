@@ -5,7 +5,7 @@ import Testing
 struct `Axis equation protocols distinguish dimension positions` {
     @Test
     func `Axis conforms to Equatable`() {
-        func acceptsEquation<T: Swift.Equatable>(_ value: T) -> T { value }
+        func acceptsEquation<T: Swift::Equatable>(_ value: T) -> T { value }
 
         #expect(acceptsEquation(Axis<3>.secondary) == .secondary)
     }

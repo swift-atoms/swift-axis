@@ -28,8 +28,8 @@ import Testing
     }
 
     @Test func `Errors belong to the axis dimension`() {
-        let two: any Swift.Error = Axis<2>.Error.outOfBounds(3)
-        let three: any Swift.Error = Axis<3>.Error.outOfBounds(3)
+        let two: any Swift::Error = Axis<2>.Error.outOfBounds(3)
+        let three: any Swift::Error = Axis<3>.Error.outOfBounds(3)
         #expect(two is Axis<2>.Error)
         #expect(!(two is Axis<3>.Error))
         #expect(three is Axis<3>.Error)

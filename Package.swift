@@ -64,7 +64,6 @@ let package = Package(
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),
-                .target(name: "Axis Foundation Integration"),
             ],
             path: "Tests/Axis Tests"
         ),
@@ -72,7 +71,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
