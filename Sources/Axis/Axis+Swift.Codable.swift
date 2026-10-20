@@ -1,5 +1,5 @@
 #if !hasFeature(Embedded)
-extension Axis: Swift::Codable {
+    extension Axis: Swift::Codable {
 
         public init(from decoder: any Decoder) throws(any Swift::Error) {
             let container = try decoder.singleValueContainer()

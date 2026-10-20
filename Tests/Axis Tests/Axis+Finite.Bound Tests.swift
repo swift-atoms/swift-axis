@@ -1,6 +1,6 @@
+import Axis
 import Finite
 import Ordinal
-import Axis
 import Testing
 
 @Suite
